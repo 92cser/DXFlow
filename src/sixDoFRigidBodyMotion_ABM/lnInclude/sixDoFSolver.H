@@ -1,1 +1,0 @@
-../sixDoFSolvers/sixDoFSolver/sixDoFSolver.H

@@ -1,1 +1,0 @@
-../SecondOrderPiston/WaveComponent.H

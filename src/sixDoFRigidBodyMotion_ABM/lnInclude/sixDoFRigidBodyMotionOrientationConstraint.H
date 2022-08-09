@@ -1,1 +1,0 @@
-../sixDoFRigidBodyMotion/constraints/orientation/sixDoFRigidBodyMotionOrientationConstraint.H

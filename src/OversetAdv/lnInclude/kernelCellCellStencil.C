@@ -1,1 +1,0 @@
-../cellCellStencil/kernel/kernelCellCellStencil.C

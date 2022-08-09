@@ -1,1 +1,0 @@
-../sixDoFRigidBodyMotion/sixDoFRigidBodyMotion.C

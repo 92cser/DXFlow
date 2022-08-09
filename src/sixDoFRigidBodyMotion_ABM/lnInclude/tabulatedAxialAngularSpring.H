@@ -1,1 +1,0 @@
-../sixDoFRigidBodyMotion/restraints/tabulatedAxialAngularSpring/tabulatedAxialAngularSpring.H

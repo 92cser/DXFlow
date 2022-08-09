@@ -1,1 +1,0 @@
-../sixDoFRigidBodyMotion/restraints/linearSpring/linearSpring.C

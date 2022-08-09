@@ -1,1 +1,0 @@
-../sixDoFRigidBodyMotionSolver/sixDoFRigidBodyMotionSolver.H

@@ -1,1 +1,0 @@
-../cellCellStencil/inverseDistance/meshToMeshDataI.H

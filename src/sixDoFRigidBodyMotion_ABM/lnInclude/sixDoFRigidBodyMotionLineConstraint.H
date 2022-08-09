@@ -1,1 +1,0 @@
-../sixDoFRigidBodyMotion/constraints/line/sixDoFRigidBodyMotionLineConstraint.H

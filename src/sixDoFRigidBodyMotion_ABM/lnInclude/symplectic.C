@@ -1,1 +1,0 @@
-../sixDoFSolvers/symplectic/symplectic.C

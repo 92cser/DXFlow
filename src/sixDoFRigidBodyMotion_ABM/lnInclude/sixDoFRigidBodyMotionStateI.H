@@ -1,1 +1,0 @@
-../sixDoFRigidBodyMotion/sixDoFRigidBodyMotionStateI.H

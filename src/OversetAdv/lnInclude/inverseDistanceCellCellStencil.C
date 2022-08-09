@@ -1,1 +1,0 @@
-../cellCellStencil/inverseDistance/inverseDistanceCellCellStencil.C

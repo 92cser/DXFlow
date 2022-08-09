@@ -1,1 +1,0 @@
-../sixDoFSolvers/Newmark/Newmark.C

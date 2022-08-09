@@ -1,1 +1,0 @@
-../cellCellStencil/inverseDistance/waveMethod.C

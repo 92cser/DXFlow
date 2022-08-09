@@ -1,1 +1,0 @@
-../cellCellStencil/polynomial/polynomialCellCellStencil.C

@@ -1,1 +1,0 @@
-../cellCellStencil/cellCellStencil/cellCellStencilTemplates.C

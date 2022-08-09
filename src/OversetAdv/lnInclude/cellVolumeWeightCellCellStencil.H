@@ -1,1 +1,0 @@
-../cellCellStencil/cellVolumeWeight/cellVolumeWeightCellCellStencil.H
