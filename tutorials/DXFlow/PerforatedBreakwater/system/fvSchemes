@@ -1,0 +1,63 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+ddtSchemes
+{
+    default          CrankNicolson 0.3;//Euler;
+}
+
+gradSchemes
+{
+    default          Gauss linear;
+}
+
+divSchemes
+{
+    div(rhoPhi,U)    Gauss upwind;//Gauss limitedLinearV 1;
+    div(phi,alpha)   Gauss vanLeer;
+    div(phirb,alpha) Gauss interfaceCompression;
+    div(((rho*nuEff)*dev2(T(grad(U))))) Gauss linear;
+    div((rhoPhi|interpolate(PorosityField)),U) Gauss limitedLinearV 1;
+
+    div(rhoPhi,k)      Gauss upwind;
+    div(rhoPhi,omega) Gauss upwind;
+
+    div(phi,k)      Gauss upwind;
+    div(phi,omega) Gauss upwind;
+ 	div((muEff*dev(T(grad(U))))) Gauss linear;
+}
+
+laplacianSchemes
+{
+    default         Gauss linear corrected;
+}
+
+interpolationSchemes
+{
+    default         linear;
+}
+
+snGradSchemes
+{
+    default         corrected;
+}
+
+wallDist
+{
+    method 			meshWave;
+}
+// ************************************************************************* //

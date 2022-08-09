@@ -1,0 +1,43 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      inputDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+WWParameters
+{
+	WaveType           monochromaticWave;
+	WaterDepth         0.7;
+	WaveHeight         0.14;
+	WavePeriod         3.0;
+	//ActiveAbsorption		true;
+	//SecondOrderCorrection		true;
+}
+WaveDamping
+{
+	x+
+	{
+		ForcingStrength     		10.0;
+		StartPosition	    		10;
+		EndPosition	   		25;
+	}
+	/*x-
+	{	// consistent with the direction of incident waves
+		// therefore the start point should be larger than the end point
+		ForcingStrength     		10.0;
+		StartPosition	    		1.98; 
+		EndPosition	    		0.0;
+	}*/
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

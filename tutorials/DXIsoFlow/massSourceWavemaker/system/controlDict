@@ -1,0 +1,144 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+    location        "system";
+    class           dictionary;
+    object          controlDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     DXIsoFlow;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         34;   //20T
+
+deltaT          0.001;
+
+writeControl    adjustableRunTime;
+
+writeInterval   1;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression on;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable yes;
+
+adjustTimeStep  yes;
+
+maxCo           0.5;
+maxAlphaCo	 0.5;
+
+maxDeltaT       0.025;
+
+// ************************************************************************* //
+functions
+{
+	surfaceElevation
+	{
+		type            sets;
+		libs            ("libsampling.so");
+		writeControl    timeStep;
+		writeInterval   10;
+
+		interpolationScheme cellPoint;
+
+		setFormat       raw;
+
+		sets
+		(
+    		GaugeVOF00 // x = 1.0L (from the source)
+    		{
+        		type    uniform;
+        		nPoints  800;
+        		axis    z;
+        		start   ( 9.96 0.01 -0.1 );
+        		end     ( 9.96 0.01 0.1 );
+    		}   
+    		GaugeVOF01 // x = 2.0L (from the source)
+    		{
+        		type    uniform;
+        		nPoints  800;
+        		axis    z;
+        		start   ( 13.28 0.01 -0.1 );
+        		end     ( 13.28 0.01 0.1 );
+    		}    
+    		GaugeVOF02 // x = 3.0L (from the source)
+    		{
+        		type    uniform;
+        		nPoints  800;
+        		axis    z;
+        		start   ( 16.6 0.01 -0.1 );
+        		end     ( 16.6 0.01 0.1 );
+    		}    
+		);
+
+		fields          ( alpha.water );
+	}
+
+	/*Probes_U
+	{	
+		type            probes;
+		libs            ("libsampling.so");
+		writeControl    timeStep;
+
+		fields (U);
+		probeLocations
+		(
+			(15.8 0.01 -0.1)
+			(15.8 0.01 -0.2)
+			(15.8 0.01 -0.3)
+			(20.36 0.01 -0.1)
+			(20.36 0.01 -0.2)
+			(20.36 0.01 -0.3)
+			(24.89 0.01 -0.1)
+			(24.89 0.01 -0.2)
+			(24.89 0.01 -0.3)
+		);
+	}*/
+
+    	/*IsoSurface
+    	{
+        	type            surfaces;
+        	surfaceFormat   raw;
+		interpolationScheme  cellPoint;
+		writeControl    outputTime;
+        	fields
+        	(
+            		alpha.water
+        	);
+        	surfaces
+        	(	
+            	topFreeSurface
+           	{
+                	type        isoSurface;
+			libs        ("libsampling.so");
+                	isoField    alpha.water;
+                	isoValue    0.5;
+                	interpolate true;
+            	}
+        	);
+    	 }*/
+}

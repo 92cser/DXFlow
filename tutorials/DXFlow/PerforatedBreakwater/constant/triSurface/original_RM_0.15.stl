@@ -1,0 +1,86 @@
+solid original_RM_0.2_0.15
+facet normal 0.0 0.0 -1.0
+  outer loop
+    vertex 8.160000000000002 0.1 -0.29000000000000004
+    vertex 8.01 -0.1 -0.29000000000000004
+    vertex 8.01 0.1 -0.29000000000000004
+  endloop
+endfacet
+facet normal 0.0 0.0 -1.0
+  outer loop
+    vertex 8.01 -0.1 -0.29000000000000004
+    vertex 8.160000000000002 0.1 -0.29000000000000004
+    vertex 8.160000000000002 -0.1 -0.29000000000000004
+  endloop
+endfacet
+facet normal -0.0 -0.0 1.0
+  outer loop
+    vertex 8.160000000000002 -0.1 -0.2
+    vertex 8.01 0.1 -0.2
+    vertex 8.01 -0.1 -0.2
+  endloop
+endfacet
+facet normal -0.0 -0.0 1.0
+  outer loop
+    vertex 8.01 0.1 -0.2
+    vertex 8.160000000000002 -0.1 -0.2
+    vertex 8.160000000000002 0.1 -0.2
+  endloop
+endfacet
+facet normal -0.0 1.0 0.0
+  outer loop
+    vertex 8.01 0.1 -0.2
+    vertex 8.160000000000002 0.1 -0.29000000000000004
+    vertex 8.01 0.1 -0.29000000000000004
+  endloop
+endfacet
+facet normal -0.0 1.0 0.0
+  outer loop
+    vertex 8.160000000000002 0.1 -0.29000000000000004
+    vertex 8.01 0.1 -0.2
+    vertex 8.160000000000002 0.1 -0.2
+  endloop
+endfacet
+facet normal 1.0 0.0 0.0
+  outer loop
+    vertex 8.160000000000002 0.1 -0.29000000000000004
+    vertex 8.160000000000002 -0.1 -0.2
+    vertex 8.160000000000002 -0.1 -0.29000000000000004
+  endloop
+endfacet
+facet normal 1.0 0.0 0.0
+  outer loop
+    vertex 8.160000000000002 -0.1 -0.2
+    vertex 8.160000000000002 0.1 -0.29000000000000004
+    vertex 8.160000000000002 0.1 -0.2
+  endloop
+endfacet
+facet normal -0.0 -1.0 -0.0
+  outer loop
+    vertex 8.160000000000002 -0.1 -0.2
+    vertex 8.01 -0.1 -0.29000000000000004
+    vertex 8.160000000000002 -0.1 -0.29000000000000004
+  endloop
+endfacet
+facet normal -0.0 -1.0 -0.0
+  outer loop
+    vertex 8.01 -0.1 -0.29000000000000004
+    vertex 8.160000000000002 -0.1 -0.2
+    vertex 8.01 -0.1 -0.2
+  endloop
+endfacet
+facet normal -1.0 0.0 0.0
+  outer loop
+    vertex 8.01 0.1 -0.2
+    vertex 8.01 -0.1 -0.29000000000000004
+    vertex 8.01 -0.1 -0.2
+  endloop
+endfacet
+facet normal -1.0 0.0 0.0
+  outer loop
+    vertex 8.01 -0.1 -0.29000000000000004
+    vertex 8.01 0.1 -0.2
+    vertex 8.01 0.1 -0.29000000000000004
+  endloop
+endfacet
+endsolid original_RM_0.2_0.15

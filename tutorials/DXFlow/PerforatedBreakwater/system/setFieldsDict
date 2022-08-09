@@ -1,0 +1,81 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      setFieldsDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+defaultFieldValues
+(
+    volScalarFieldValue alpha.water 0
+    volScalarFieldValue MassSource 0
+);
+
+regions
+(
+    boxToCell
+    {
+        box (-10 -1 -1) (100 1 0.0);
+
+        fieldValues
+        (
+            volScalarFieldValue alpha.water 1
+        );
+    }
+	//mass source wavemaker
+    boxToCell
+    {	
+		box (0.02 -1 -0.4) (0.03 1 -0.054);//1.0Hs
+
+        fieldValues
+        (
+            volScalarFieldValue MassSource 1
+        );
+    }
+	// porosity foundation
+    surfaceToCell
+    {
+        file            "./constant/triSurface/foundation.stl";
+        outsidePoints   ((0.25 0.01 0.25));   	// definition of outside
+        includeCut      true;              		// cells cut by surface
+        includeInside   true;              		// cells not on outside of surf
+        includeOutside  false;              	// cells on outside of surf
+        nearDistance    -1;                 	// cells with centre near surf
+                                            	// (set to -1 if not used)
+        curvature       -100;                	// cells within nearDistance
+                                            	// and near surf curvature
+                                            	// (set to -100 if not used)
+        fieldValues
+        (
+            volScalarFieldValue PorosityMedia 1
+        );
+    }
+	// inner rubble mound
+    surfaceToCell
+    {
+        file            "./constant/triSurface/original_RM_0.15.stl";
+        outsidePoints   ((0.25 0.01 0.25));   	// definition of outside
+        includeCut      true;              		// cells cut by surface
+        includeInside   true;              		// cells not on outside of surf
+        includeOutside  false;              	// cells on outside of surf
+        nearDistance    -1;                 	// cells with centre near surf
+                                            	// (set to -1 if not used)
+        curvature       -100;                	// cells within nearDistance
+                                            	// and near surf curvature
+                                            	// (set to -100 if not used)
+        fieldValues
+        (
+            volScalarFieldValue PorosityMedia 2
+        );
+    }
+);

@@ -1,0 +1,39 @@
+#!/bin/sh
+
+blockMesh
+
+# delete if exist
+rm -r system/topoSetDict
+rm -r system/refineMeshDict
+
+# first level refinement
+cp -a system/topoSetDict0 system/topoSetDict
+# c0
+topoSet
+cp -a system/refineMeshDict0 system/refineMeshDict
+refineMesh -overwrite
+rm -r system/refineMeshDict
+# c1
+topoSet
+cp -a system/refineMeshDict1 system/refineMeshDict
+refineMesh -overwrite
+rm -r system/refineMeshDict
+
+# second level refinement
+rm -r system/topoSetDict
+cp -a system/topoSetDict1 system/topoSetDict
+# c0
+topoSet
+cp -a system/refineMeshDict0 system/refineMeshDict
+refineMesh -overwrite
+rm -r system/refineMeshDict
+# c1
+topoSet
+cp -a system/refineMeshDict1 system/refineMeshDict
+refineMesh -overwrite
+rm -r system/refineMeshDict
+
+# delete after refinent
+rm -r system/topoSetDict
+
+#------------------------------------------------------------------------------

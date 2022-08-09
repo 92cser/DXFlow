@@ -1,0 +1,115 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+
+    "cellDisplacement.*"
+    {
+        solver          PCG;
+        preconditioner  DIC;
+
+        tolerance       1e-06;
+        relTol          0;
+        maxIter         100;
+    }
+
+    "alpha.water.*"
+    {
+        isoFaceTol      1e-8;
+        surfCellTol     1e-4;
+        nAlphaBounds    3;
+        snapTol         1e-4;
+        clip            0;
+
+        reconstructionScheme 	isoAlpha;//plicRDF;
+
+        nAlphaCorr      1;
+        nAlphaSubCycles 1;
+        cAlpha          1;
+    }
+
+    "pcorr.*"
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-9;
+        relTol          0;
+    }
+
+    p_rgh
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-8;
+        relTol          0.0;
+    }
+
+    p_rghFinal
+    {
+        $p_rgh;
+        relTol          0;
+    }
+
+    "(U|k|omega|epsilon).*"
+    {
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-08;
+        relTol          0;
+    }
+}
+
+PIMPLE
+{
+    momentumPredictor   no;
+    nOuterCorrectors    12;
+    nCorrectors         2;
+    nNonOrthogonalCorrectors 0;
+
+    ddtCorr                    false;
+    correctPhi                 false;
+
+    moveMeshOuterCorrectors 	true;
+	
+    residualControl  
+	{   
+		p_rgh
+		{
+			tolerance       1e-8;
+			relTol          0;//1e-5;
+		}
+	}
+    turbOnFinalIterOnly 	yes;
+
+    oversetAdjustPhi    	no;
+}
+
+relaxationFactors
+{
+    fields
+    {
+    }
+    equations
+    {
+            ".*" 1;
+    }
+}
+
+cache
+{}
+
+// ************************************************************************* //

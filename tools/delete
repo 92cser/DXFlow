@@ -1,0 +1,71 @@
+#!/bin/sh
+
+mkdir empty/
+
+echo "processor0.."
+rsync --delete-before -d empty/ processor0/
+
+echo "processor1.."
+rsync --delete-before -d empty/ processor1/
+
+echo "processor2.."
+rsync --delete-before -d empty/ processor2/
+
+echo "processor3.."
+rsync --delete-before -d empty/ processor3/
+
+echo "processor4.."
+rsync --delete-before -d empty/ processor4/
+
+echo "processor5.."
+rsync --delete-before -d empty/ processor5/
+
+echo "processor6.."
+rsync --delete-before -d empty/ processor6/
+
+echo "processor7.."
+rsync --delete-before -d empty/ processor7/
+
+echo "processor8.."
+rsync --delete-before -d empty/ processor8/
+
+echo "processor9.."
+rsync --delete-before -d empty/ processor9/
+
+echo "processor10.."
+rsync --delete-before -d empty/ processor10/
+
+echo "processor11.."
+rsync --delete-before -d empty/ processor11/
+
+echo "processor12.."
+rsync --delete-before -d empty/ processor12/
+
+echo "processor13.."
+rsync --delete-before -d empty/ processor13/
+
+echo "processor14.."
+rsync --delete-before -d empty/ processor14/
+
+echo "processor15.."
+rsync --delete-before -d empty/ processor15/
+
+echo "processor16.."
+rsync --delete-before -d empty/ processor16/
+
+echo "processor17.."
+rsync --delete-before -d empty/ processor17/
+
+echo "processor18.."
+rsync --delete-before -d empty/ processor18/
+
+echo "processor19.."
+rsync --delete-before -d empty/ processor19/
+
+echo "processor20.."
+rsync --delete-before -d empty/ processor20/
+
+echo "processor21.."
+rsync --delete-before -d empty/ processor21/
+
+rm -r empty/ processor* 

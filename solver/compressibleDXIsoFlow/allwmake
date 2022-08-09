@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -o nounset
+set -o errexit
+
+wclean all 
+
+COMPDXFLOW=`pwd`
+
+cd $COMPDXFLOW/VoFphaseCompressibleTurbulenceModels
+
+wmake
+
+cd $COMPDXFLOW/twoPhaseMixtureThermo
+
+wmake
+
+cd $COMPDXFLOW/
+
+wmake

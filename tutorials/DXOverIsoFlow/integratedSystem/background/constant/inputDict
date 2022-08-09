@@ -1,0 +1,74 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      MassSourceDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+WWParameters
+{
+	WaveType           StreamFunctionWave;
+	WaterDepth         0.5;
+	Ej
+	(
+		5.5118826e-02
+		3.4686518e-03
+		2.3806851e-04
+		1.8945091e-05
+		1.6619711e-06
+		1.5499979e-07		
+	);
+	Properties
+	(
+		5.6750 // nondimensional wavelength
+		0.1    // nondimensional wave height
+		6.6442 // nondimensional wave period
+		0.8541 // nondimensional wave speed
+	);
+}
+MassSourceWaveMaker
+{
+	AreaOfSource        		0.02125;
+	EnhanceFactor       		1.1;
+	Gamma				1e-6;
+	Zt				-0.075;
+	Zb				-0.5;
+	AdjustU
+	{
+		AdjustUndesiredW    	true;
+		// nondimentional adjust height for Uneg in source region
+		// value between 0 and 1. 
+		AdjustHeight	    	1.0;
+		IndexOfAdjustment	0.1;
+		AdjustmentScheme	tri;// power, tri, exp
+		EnsureSymmetry		false;
+	}
+}
+WaveDamping
+{
+	// without alpha damping source,  
+	// without vertically uneven forcing strength
+	/*x+
+	{
+		ForcingStrength     	8.52; // calculated as per the theory of Peric (2019)
+		StartPosition	    	14.15;
+		EndPosition	    	18.395;
+	}*/
+	x-
+	{	// consistent with the direction of incident waves
+		// therefore the start point should be larger than the end point
+		ForcingStrength     	8.52;
+		StartPosition	    	4.245; 
+		EndPosition	    	0.0;
+	}
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

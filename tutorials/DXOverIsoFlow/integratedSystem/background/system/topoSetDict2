@@ -1,0 +1,64 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+actions
+(
+    {   // free surface
+        name    c0;
+        type    cellSet;
+        action  new;
+        source  boxToCell;
+        sourceInfo
+        {
+		//box (0 -1 -0.05) (13.94 1 0.05);
+		box (0 -1 -0.04) (14.02 1 0.04);
+        }
+    }
+    {   // source region
+        name    c1;
+        type    cellSet;
+        action  new;
+        source  boxToCell;
+        sourceInfo
+        {
+		//box (5.62 -1 -0.5) (5.75 1 -0.05); 
+		box (5.64 -1 -0.5) (5.73 1 -0.04); 
+        }
+    }
+    {   // structure
+        name    c2;
+        type    cellSet;
+        action  new;
+        source  boxToCell;
+        sourceInfo
+        {
+            //box (13.94 -1 -0.5) (14.68 1 0.34);
+            box (14.02 -1 -0.5) (14.68 1 0.33);
+        }
+    }
+    {   // further refinement inside the chamber (only in x-direction)
+        name    c3;
+        type    cellSet;
+        action  new;
+        source  boxToCell;
+        sourceInfo
+        {
+            box (14.15 -1 -0.5) (14.67 1 0.3);
+        }
+    }
+);
+
+// ************************************************************************* //

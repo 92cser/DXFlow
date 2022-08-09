@@ -1,0 +1,72 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      inputDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+WWParameters
+{
+	WaveType           			  	RandomWave;
+	SpectrumType					Jonswap;
+	NComponents					100;
+	WaterDepth        			  	0.4;
+	SignificantWaveHeight         		0.053;
+	PeakPeriod        			  	1.48;
+	AmplitudeDiscretization		  	AF;
+}
+MassSourceWaveMaker
+{
+	AreaOfSource        			0.00346;
+	EnhanceFactor       			1.0;
+	Gamma					1e-6;
+	Zt					-0.054;
+	Zb					-0.4;
+	AdjustU
+	{
+		AdjustUndesiredW    	true;
+		// nondimentional adjust height for Uneg in source region
+		// value between 0 and 1. 
+		AdjustHeight	    	1.0;
+		IndexOfAdjustment	0.1;
+		AdjustmentScheme	tri;// power, tri, exp
+		EnsureSymmetry		false;
+	}
+}
+WaveDamping
+{
+	AlphaSource   			false;
+	/*x+
+	{
+		ForcingStrength     	10;
+		StartPosition	    	8.1;
+		EndPosition	    	13.0;
+	}*/
+	x-
+	{	// consistent with the direction of incident waves
+		// therefore the start point should be larger than the end point
+		ForcingStrength     	10;
+		StartPosition	    	-1.0; 
+		EndPosition	    	-6.0;
+	}
+}
+
+PorosityProperties     // consist of lists
+{                      // first component: foundation, second component: inner rubble mound
+	porosity		(0.42 0.42);
+	meanDiameter		(0.012 0.012);
+	a_coeff		(500 500);
+	b_coeff		(2.0 2.0);
+	c_coeff		(0.0 0.0);
+	KCNumber		(16.19 16.19);
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

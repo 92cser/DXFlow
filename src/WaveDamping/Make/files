@@ -1,0 +1,3 @@
+waveDamping.C
+
+LIB = $(FOAM_LIBBIN)/libwaveDamping

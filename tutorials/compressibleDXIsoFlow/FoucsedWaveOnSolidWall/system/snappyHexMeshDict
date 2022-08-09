@@ -1,0 +1,103 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      snappyHexMeshDict.cfg;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+castellatedMesh true;
+snap            true;
+addLayers       false;
+
+geometry
+{
+    slope.stl
+    {
+        type triSurfaceMesh;
+        name slope;
+    }
+};
+
+castellatedMeshControls
+{
+    maxLocalCells       100000;
+    maxGlobalCells      100000000;
+    minRefinementCells  10;
+    maxLoadUnbalance    0.10;
+    nCellsBetweenLevels 3;
+    resolveFeatureAngle 45;
+    allowFreeStandingZoneFaces true;
+    features
+    (
+    );
+    refinementRegions
+    {}
+    refinementSurfaces
+    {
+        slope
+        {
+            // Surface-wise min and max refinement level
+            level ( 0 0 );
+        }
+    }
+    locationInMesh (1 0.01 -0.5);
+}
+
+snapControls
+{
+    nSmoothPatch    0;
+    tolerance       4.0;
+    nSolveIter      30;
+    nRelaxIter      5;
+
+    nFeatureSnapIter 0;
+
+    explicitFeatureSnap    false;
+    multiRegionFeatureSnap false;
+    implicitFeatureSnap    false;
+}
+
+addLayersControls
+{
+    featureAngle              100;
+    slipFeatureAngle          30;
+
+    nLayerIter                50;
+    nRelaxedIter              20;
+    nRelaxIter                5;
+
+    nGrow                     0;
+
+    nSmoothSurfaceNormals     1;
+    nSmoothNormals            3;
+    nSmoothThickness          10;
+    maxFaceThicknessRatio     0.5;
+    maxThicknessToMedialRatio 0.3;
+
+    minMedialAxisAngle        90;
+    nMedialAxisIter           10;
+
+    nBufferCellsNoExtrude     0;
+    additionalReporting       false;
+//    nSmoothDisplacement       0;
+//    detectExtrusionIsland     false;
+}
+
+meshQualityControls
+{
+    #include "<system>/meshQualityDict"
+}
+
+debug 0;
+mergeTolerance 1e-6;
+
+// ************************************************************************* //

@@ -1,0 +1,24 @@
+// free surface
+functions
+{
+    surfaces
+    {
+        type            surfaces;
+        libs            (geometricVoF sampling);
+        writeControl    writeTime;
+
+        surfaceFormat   vtp;
+        fields          (alpha.water);
+
+        interpolationScheme cell;
+
+        surfaces
+        {
+            freeSurf
+            {
+                type            interface;
+                interpolate     false;
+            }
+        }
+    }
+}

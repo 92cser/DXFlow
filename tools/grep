@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -o nounset
+set -o errexit
+
+grep "\<Time" log.Run > t.log
+
+grep "Relative tolerance of torque" log.Run > rotationTol.log
+grep "Euler angles" log.Run > rotation.log
+grep "Relative tolerance of linear acceleration" log.Run > disTol.log
+grep "Centre of mass" log.Run > dis.log
+
+#tail -n 100 log.log

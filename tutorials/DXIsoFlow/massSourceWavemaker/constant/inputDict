@@ -1,0 +1,74 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      inputDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+WWParameters
+{
+	WaveType           StreamFunctionWave;
+	WaterDepth         0.5;
+	Ej
+	(
+		4.6796992e-02
+		3.3881428e-03
+		2.4702329e-04
+		2.0289131e-05
+		1.8311399e-06
+		1.7581812e-07		
+	);
+	Properties
+	(
+		6.6777 // nondimensional wavelength
+		0.1    // nondimensional wave height
+		7.5301 // nondimensional wave period
+		0.8868 // nondimensional wave speed
+	);
+}
+MassSourceWaveMaker
+{
+	AreaOfSource        		0.0255;
+	EnhanceFactor       		1.1;
+	Gamma				1e-6;
+	Zt				-0.075;
+	Zb				-0.5;
+	AdjustU
+	{
+		AdjustUndesiredW    	true;
+		// nondimentional adjust height for Uneg in source region
+		// value between 0 and 1. 
+		AdjustHeight	    	1.0;
+		IndexOfAdjustment	0.1;
+		AdjustmentScheme	tri;// power, tri, exp
+		EnsureSymmetry		false;
+	}
+}
+WaveDamping
+{
+	// without alpha damping source,  
+	// without vertically uneven forcing strength
+	x+
+	{
+		ForcingStrength     	7.9; // calculated as per the theory of Peric (2019)
+		StartPosition	    	16.6;
+		EndPosition	    	21.58;
+	}
+	x-
+	{	// consistent with the direction of incident waves
+		// therefore the start point should be larger than the end point
+		ForcingStrength     	7.9;
+		StartPosition	    	4.98; 
+		EndPosition	    	0.0;
+	}
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

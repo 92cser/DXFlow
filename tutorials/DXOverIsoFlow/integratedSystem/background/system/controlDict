@@ -1,0 +1,255 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+libs            ("liboversetAdv.so" "libfvMotionSolvers.so");
+
+application     DXOverIsoFlow;
+
+startFrom       latestTime;
+
+startTime       0.0;
+
+stopAt          endTime;
+
+endTime         30; //20*T
+
+deltaT          0.001;
+
+writeControl    adjustableRunTime;
+
+writeInterval   0.1;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  12;
+
+writeCompression on;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable yes;
+
+adjustTimeStep  yes;
+
+maxCo           0.5;
+maxAlphaCo      0.5;
+maxDeltaT       0.01;
+
+// ************************************************************************* //
+functions
+{
+	forceOFfloatingBody
+	{
+		type             forces;
+		libs             ("libforces.so");
+	
+		writeControl     timeStep;
+		writeInterval    1;
+		
+		rho		  rhoInf;		
+		rhoInf           1000;
+		log              on;
+
+		patches    	 (floatingObject perforatedWall) ;
+		CofR        	 (0 0 0);
+	}
+	
+	surfaceElevation
+	{
+		type            sets;
+		libs            ("libsampling.so");
+		writeControl    timeStep;
+		writeInterval   5;
+
+		interpolationScheme cellPoint;
+
+		setFormat       raw;
+
+		sets
+		(
+ 		// five wave gauges for reflection coefficient calculation
+    		GaugeVOF00
+    		{
+        		type    uniform;
+        		nPoints  800;
+        		axis    z;
+        		start   ( 10.8 0.01 -0.1 );
+        		end     ( 10.8 0.01 0.1 );
+    		} 
+    		GaugeVOF01
+    		{
+        		type    uniform;
+        		nPoints  800;
+        		axis    z;
+        		start   ( 10.9 0.01 -0.1 );
+        		end     ( 10.9 0.01 0.1 );
+    		} 
+    		GaugeVOF02
+    		{
+        		type    uniform;
+        		nPoints  800;
+        		axis    z;
+        		start   ( 11.02 0.01 -0.1 );
+        		end     ( 11.02 0.01 0.1 );
+    		} 		
+    		GaugeVOF03
+    		{
+        		type    uniform;
+        		nPoints  800;
+        		axis    z;
+        		start   ( 11.16 0.01 -0.1 );
+        		end     ( 11.16 0.01 0.1 );
+    		}   	
+    		GaugeVOF04 // x = 2.0L (from the source)
+    		{
+        		type    uniform;
+        		nPoints  800;
+        		axis    z;
+        		start   ( 11.32 0.01 -0.1 );
+        		end     ( 11.32 0.01 0.1 );
+    		}    
+		// two wave gauges in gap    		
+    		GaugeVOF05 // bewteen perforated wall and box
+    		{
+        		type    uniform;
+        		nPoints  800;
+        		axis    z;
+        		start   ( 14.21 0.01 -0.1 );
+        		end     ( 14.21 0.01 0.1 );
+    		}    
+    		GaugeVOF06 // bewteen solid wall and box
+    		{
+        		type    uniform;
+        		nPoints  800;
+        		axis    z;
+        		start   ( 14.61 0.01 -0.1 );
+        		end     ( 14.61 0.01 0.1 );
+    		}  
+		);
+		fields          ( alpha.water );
+	}
+	
+	probesOnBuoy
+	{
+		type            patchProbes;
+		libs            ( "libsampling.so" );
+
+		// Name of the directory for probe data
+		name            probes;
+
+		patches         ("floatingObject");
+
+		// Write at same frequency as fields
+		writeControl    timeStep;
+		writeInterval   1;
+
+		interpolationScheme cell;
+
+		fixedLocations 	false;
+
+		// Fields to be probed
+		fields          (p p_rgh);
+
+		// Locations to probe. These get snapped onto the nearest point
+		// on the selected patches
+		probeLocations
+		(
+				(14.26 0.01 -0.02)       
+				(14.26 0.01 0.03)   
+				(14.26 0.01 0.08)    
+				(14.56 0.01 -0.02)       
+				(14.56 0.01 0.03)   
+				(14.56 0.01 0.08) 
+		);
+	}
+	/*
+	probesOnPW
+	{
+		type            patchProbes;
+		libs            ( "libsampling.so" );
+
+		// Name of the directory for probe data
+		name            probes;
+
+		patches         ("perforatedWall");
+
+		// Write at same frequency as fields
+		writeControl    timeStep;
+		writeInterval   1;
+
+		interpolationScheme cell;
+
+		fixedLocations 	false;
+
+		// Fields to be probed
+		fields          (p p_rgh);
+
+		// Locations to probe. These get snapped onto the nearest point
+		// on the selected patches
+		probeLocations
+		(
+			(9.9 0.01 -0.1)
+			(9.9 0.01 -0.06)    
+			(9.9 0.01 -0.03)    
+			(9.9 0.01 -0.01)   
+			(9.9 0.01 0.03)   
+			(9.9 0.01 0.05)    
+		);
+	}
+	
+	probesOnSW
+	{
+		type            patchProbes;
+		libs            ( "libsampling.so" );
+
+		// Name of the directory for probe data
+		name            probes;
+
+		patches         ("stationaryWalls");
+
+		// Write at same frequency as fields
+		writeControl    timeStep;
+		writeInterval   1;
+
+		interpolationScheme cell;
+
+		fixedLocations 	false;
+
+		// Fields to be probed
+		fields          (p p_rgh);
+
+		// Locations to probe. These get snapped onto the nearest point
+		// on the selected patches
+		probeLocations
+		(
+			(10.4 0.01 -0.1)
+			(10.4 0.01 -0.05)    
+			(10.4 0.01 -0.03)    
+			(10.4 0.01 -0.01)   
+			(10.4 0.01 0.0)
+			(10.4 0.01 0.01)
+			(10.4 0.01 0.03)   
+			(10.4 0.01 0.05)   
+			(10.4 0.01 0.1)    
+		);
+	}
+	*/
+}
+// ************************************************************************* //

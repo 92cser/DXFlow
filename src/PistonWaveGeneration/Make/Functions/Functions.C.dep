@@ -1,0 +1,6 @@
+$(OBJECTS_DIR)/../Functions/Functions.C.dep: \
+../Functions/Functions.C \
+../Functions/Functions.H \
+
+../Functions/Functions.H :
+

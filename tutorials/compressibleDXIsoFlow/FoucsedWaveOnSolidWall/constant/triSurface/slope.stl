@@ -1,0 +1,100 @@
+solid slope
+facet normal -0.0 1.0 -0.0
+  outer loop
+    vertex 39.0 0.1 -0.1500000000000002
+    vertex 47.6 0.1 -1.0
+    vertex 35.6 0.1 -1.0
+  endloop
+endfacet
+facet normal -0.0 1.0 -0.0
+  outer loop
+    vertex 47.6 0.1 -1.0
+    vertex 39.0 0.1 -0.1500000000000002
+    vertex 47.6 0.1 -0.15
+  endloop
+endfacet
+facet normal 0.0 -1.0 0.0
+  outer loop
+    vertex 47.6 -0.10000000000000009 -0.15
+    vertex 35.6 -0.10000000000000009 -1.0
+    vertex 47.6 -0.10000000000000009 -1.0
+  endloop
+endfacet
+facet normal 0.0 -1.0 0.0
+  outer loop
+    vertex 35.6 -0.10000000000000009 -1.0
+    vertex 47.6 -0.10000000000000009 -0.15
+    vertex 39.0 -0.10000000000000009 -0.1500000000000002
+  endloop
+endfacet
+facet normal -5.0132737467518154e-17 -0.0 1.0
+  outer loop
+    vertex 47.6 -0.10000000000000009 -0.15
+    vertex 39.0 0.1 -0.1500000000000002
+    vertex 39.0 -0.10000000000000009 -0.1500000000000002
+  endloop
+endfacet
+facet normal -5.0132737467518154e-17 -0.0 1.0
+  outer loop
+    vertex 39.0 0.1 -0.1500000000000002
+    vertex 47.6 -0.10000000000000009 -0.15
+    vertex 47.6 0.1 -0.15
+  endloop
+endfacet
+facet normal -0.24253562503633289 1.5049139959068312e-31 0.9701425001453319
+  outer loop
+    vertex 39.0 -0.10000000000000009 -0.1500000000000002
+    vertex 35.6 0.0 -1.0
+    vertex 35.6 -0.10000000000000009 -1.0
+  endloop
+endfacet
+facet normal -0.24253562503633289 1.5049139959068312e-31 0.9701425001453319
+  outer loop
+    vertex 35.6 0.0 -1.0
+    vertex 39.0 -0.10000000000000009 -0.1500000000000002
+    vertex 35.6 0.1 -1.0
+  endloop
+endfacet
+facet normal -0.24253562503633289 1.5049139959068312e-31 0.9701425001453319
+  outer loop
+    vertex 35.6 0.1 -1.0
+    vertex 39.0 -0.10000000000000009 -0.1500000000000002
+    vertex 39.0 0.1 -0.1500000000000002
+  endloop
+endfacet
+facet normal 0.0 0.0 -1.0
+  outer loop
+    vertex 47.6 0.1 -1.0
+    vertex 35.6 0.0 -1.0
+    vertex 35.6 0.1 -1.0
+  endloop
+endfacet
+facet normal 0.0 0.0 -1.0
+  outer loop
+    vertex 35.6 0.0 -1.0
+    vertex 47.6 0.1 -1.0
+    vertex 35.6 -0.10000000000000009 -1.0
+  endloop
+endfacet
+facet normal 0.0 0.0 -1.0
+  outer loop
+    vertex 35.6 -0.10000000000000009 -1.0
+    vertex 47.6 0.1 -1.0
+    vertex 47.6 -0.10000000000000009 -1.0
+  endloop
+endfacet
+facet normal 1.0 0.0 0.0
+  outer loop
+    vertex 47.6 0.1 -1.0
+    vertex 47.6 -0.10000000000000009 -0.15
+    vertex 47.6 -0.10000000000000009 -1.0
+  endloop
+endfacet
+facet normal 1.0 0.0 0.0
+  outer loop
+    vertex 47.6 -0.10000000000000009 -0.15
+    vertex 47.6 0.1 -1.0
+    vertex 47.6 0.1 -0.15
+  endloop
+endfacet
+endsolid slope

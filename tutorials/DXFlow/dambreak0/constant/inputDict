@@ -1,0 +1,34 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      inputDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+WWParameters
+{
+	WaveType           noWave;
+	WaterDepth         0.0; // could be any value
+}
+PorosityProperties     // consist of lists
+{
+	porosity	(0.49);
+	meanDiameter	(0.0159);
+	a_coeff	(500);
+	b_coeff	(2.0);
+	c_coeff	(0.0);
+	KCNumber	(10000);
+}
+WaveDamping 
+{}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

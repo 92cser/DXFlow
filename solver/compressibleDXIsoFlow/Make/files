@@ -1,0 +1,3 @@
+compressibleDXIsoFlow.C
+
+EXE = $(FOAM_APPBIN)/compressibleDXIsoFlow

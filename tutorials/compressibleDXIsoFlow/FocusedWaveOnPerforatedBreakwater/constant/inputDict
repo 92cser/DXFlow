@@ -1,0 +1,33 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      PistionWaveGenerationDic;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+WWParameters
+{
+	WaveType            		FocusWave;
+	WaterDepth         		1.0;
+	FocusAmplitude	    		0.09;
+	Fre_start			0.5;
+	Fre_end			1.0;
+	Fre_peak			0.7;
+	FocusTime			70.0;		
+	FocusPosition			37.45;
+	AmplitudeDiscretization	NewWaveJS;
+	NComponents			58;
+	SecondOrderCorrection		false;
+}
+WaveDamping 
+{}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //

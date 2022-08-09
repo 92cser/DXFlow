@@ -1,0 +1,10 @@
+EXE_INC = \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+    -I$(LIB_SRC)/functionObjects/forces/lnInclude \
+    -I$(LIB_SRC)/fileFormats/lnInclude \
+    -I../WaterWaves/lnInclude
+LIB_LIBS = \
+    -lfiniteVolume \
+    -lfileFormats  \
+    -lWaterWaves

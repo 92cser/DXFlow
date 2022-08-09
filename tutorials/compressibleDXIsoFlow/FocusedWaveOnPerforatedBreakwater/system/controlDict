@@ -1,0 +1,313 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version         2.0;
+    format          ascii;
+    location        "system";
+    class           dictionary;
+    object          controlDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     compressibleDXIsoFlow;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         73;
+
+deltaT          0.001;
+
+writeControl    adjustableRunTime;
+
+writeInterval   0.01;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression on;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable yes;
+
+adjustTimeStep  yes;
+
+maxCo           0.2;
+maxAlphaCo	 0.2;
+
+maxDeltaT       0.05;
+
+// ************************************************************************* //
+
+functions
+{
+	/*surfaceElevation
+	{
+		type            sets;
+		libs            ("libsampling.so");
+		writeControl    timeStep;
+		writeInterval   10;
+
+		interpolationScheme cellPoint;
+
+		setFormat       raw;
+
+		sets
+		(
+			GaugeVOF00
+			{
+				type    uniform;
+				nPoints  800;
+				axis    z;
+				start   ( 35.6 0.01 -0.1 );
+				end     ( 35.6 0.01 0.2 );
+			}   
+			GaugeVOF01
+			{
+				type    uniform;
+				nPoints  800;
+				axis    z;
+				start   ( 36.8 0.01 -0.1 );
+				end     ( 36.8 0.01 0.2 );
+			}   
+			GaugeVOF02
+			{
+				type    uniform;
+				nPoints  800;
+				axis    z;
+				start   ( 38.0 0.01 -0.1 );
+				end     ( 38.0 0.01 0.2 );
+			}   
+			GaugeVOF03
+			{
+				type    uniform;
+				nPoints  800;
+				axis    z;
+				start   ( 39.0 0.01 -0.1 );
+				end     ( 39.0 0.01 0.2 );
+			}   
+			GaugeVOF04
+			{
+				type    uniform;
+				nPoints  800;
+				axis    z;
+				start   ( 40.2 0.01 -0.1 );
+				end     ( 40.2 0.01 0.2 );
+			}   
+			GaugeVOF05
+			{
+				type    uniform;
+				nPoints  800;
+				axis    z;
+				start   ( 41.4 0.01 -0.1 );
+				end     ( 41.4 0.01 0.2 );
+			}   
+			GaugeVOF06
+			{
+				type    uniform;
+				nPoints  800;
+				axis    z;
+				start   ( 44.1 0.01 -0.1 );
+				end     ( 44.1 0.01 0.2 );
+			}   
+		);
+
+		fields          ( alpha.water );
+	}*/
+
+	P_RearWall
+	{
+		type            patchProbes;
+		libs            ( "libsampling.so" );
+
+		// Name of the directory for probe data
+		name            PProbes;
+
+		patches         ("outlet");
+
+		// Write at same frequency as fields
+		writeControl    timeStep;
+		writeInterval   1;
+
+		interpolationScheme cell;
+
+		fixedLocations 	false;
+
+		// Fields to be probed
+		fields          (p);
+
+		// Locations to probe. These get snapped onto the nearest point
+		// on the selected patches
+		probeLocations
+		(
+			(39.48 0.01 -0.09)
+			(39.48 0.01 -0.07)
+			(39.48 0.01 -0.05)
+			(39.48 0.01 -0.03)
+			(39.48 0.01 -0.01)
+			(39.48 0.01  0.01)
+			(39.48 0.01  0.03)
+			(39.48 0.01  0.05)
+			(39.48 0.01  0.07)
+			(39.48 0.01  0.09)
+		);
+	}
+
+	P_FrontWall
+	{
+		type            patchProbes;
+		libs            ( "libsampling.so" );
+
+		// Name of the directory for probe data
+		name            PProbes;
+
+		patches         ("PCB");
+
+		// Write at same frequency as fields
+		writeControl    timeStep;
+		writeInterval   1;
+
+		interpolationScheme cell;
+
+		fixedLocations 	false;
+
+		// Fields to be probed
+		fields          (p);
+
+		// Locations to probe. These get snapped onto the nearest point
+		// on the selected patches
+		probeLocations
+		(
+			(39.18 0.01 -0.15)
+			(39.18 0.01 -0.13)
+			(39.18 0.01 -0.11)
+			
+			(39.18 0.01 -0.09)
+			(39.18 0.01 -0.08)
+			(39.18 0.01 -0.07)
+			(39.18 0.01 -0.06)
+		
+			(39.18 0.01 -0.045)	
+			(39.18 0.01 -0.04)
+			(39.18 0.01 -0.03)
+			(39.18 0.01 -0.02)
+			(39.18 0.01 -0.01)
+			(39.18 0.01 -0.005)
+			
+			(39.18 0.01  0.01)
+			(39.18 0.01  0.02)
+			(39.18 0.01  0.03)
+			(39.18 0.01  0.04)
+			(39.18 0.01  0.045)
+			
+			(39.18 0.01  0.07)
+			(39.18 0.01  0.08)
+			(39.18 0.01  0.09)
+			(39.18 0.01  0.1)
+			(39.18 0.01  0.11)
+			(39.18 0.01  0.12)
+			(39.18 0.01  0.13)
+			(39.18 0.01  0.14)
+			(39.18 0.01  0.15)
+			
+			// corner
+			(39.185 0.01  -0.098)
+			(39.185 0.01  -0.046)
+			(39.185 0.01  0.008)
+			(39.185 0.01  0.06)
+		);
+	}
+	
+	P_superstructure
+	{
+		type            patchProbes;
+		libs            ( "libsampling.so" );
+
+		// Name of the directory for probe data
+		name            PProbes;
+
+		patches         ("PCB");
+
+		// Write at same frequency as fields
+		writeControl    timeStep;
+		writeInterval   1;
+
+		interpolationScheme cell;
+
+		fixedLocations 	false;
+
+		// Fields to be probed
+		fields          (p);
+
+		// Locations to probe. These get snapped onto the nearest point
+		// on the selected patches
+		probeLocations
+		(
+			(39.20 0.01 0.1)
+			(39.24 0.01 0.1)
+			(39.28 0.01 0.1)
+			(39.32 0.01 0.1)
+			(39.36 0.01 0.1)
+			(39.4 0.01 0.1)
+			(39.44 0.01 0.1)
+			(39.48 0.01 0.1)
+		);
+	}
+
+        UProbes
+	{
+		type            probes;
+		libs            ( "libsampling.so" );
+
+		// Name of the directory for probe data
+		name            UProbes;
+
+		// Write at same frequency as fields
+		writeControl    timeStep;
+		writeInterval   1;
+
+		interpolationScheme cell;
+
+		fixedLocations 	false;
+
+		// Fields to be probed
+		fields          (U);
+
+		// Locations to probe. These get snapped onto the nearest point
+		// on the selected patches
+		probeLocations
+		(
+			(39.188 0.01  -0.104)   
+			(39.188 0.01  -0.052) 
+			(39.188 0.01  0.002) 
+			(39.188 0.01  0.054)       
+		);
+	}
+	
+	LimitT
+	{
+		type			limitFields;
+		libs 			("fieldFunctionObjects");
+		fields			(T);
+		limit 			both;
+		min			280;
+		max			320;
+		writeControl		outputTime;	
+	}
+}

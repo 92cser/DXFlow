@@ -1,0 +1,13 @@
+Tthe file "pimpleControl.C" should be moved to 
+
+""src/finiteVolume/cfdTools/general/solutionControl/pimpleControl"
+
+to replace the original "pimpleControl.C"
+
+For example, try the following commends at the present folder:
+
+"mv $WM_PROJECT_DIR/src/finiteVolume/cfdTools/general/solutionControl/pimpleControl/pimpleControl.C $WM_PROJECT_DIR/src/finiteVolume/cfdTools/general/solutionControl/pimpleControl/pimpleControl-backup.C"
+
+"cp -a pimpleControl.C $WM_PROJECT_DIR/src/finiteVolume/cfdTools/general/solutionControl/pimpleControl/pimpleControl.C"
+
+However, it should be noted that using the PISO-PIMPLE alogrithm might make simulations not stable. 

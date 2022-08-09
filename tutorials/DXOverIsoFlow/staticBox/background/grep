@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -o nounset
+set -o errexit
+
+#grep "Relative tolerance of torque" log.DXOverIsoFlow > rotationTol.log
+grep "Eular angles" log.DXOverIsoFlow > rotation.log
+#grep "Relative tolerance of linear acceleration" log.DXOverIsoFlow > disTol.log
+grep "Centre of mass" log.DXOverIsoFlow > dis.log
+
+#tail -n 100 log.log

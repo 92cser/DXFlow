@@ -1,0 +1,3 @@
+wavePorosityMedia.C
+
+LIB = $(FOAM_LIBBIN)/libWavePorosityMedia

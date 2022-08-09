@@ -1,0 +1,3 @@
+MassSource.C
+
+LIB = $(FOAM_LIBBIN)/libMassSource

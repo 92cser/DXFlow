@@ -1,0 +1,55 @@
+#!/bin/sh
+
+blockMesh 
+# first refinement level 
+cd system
+rm -r topoSetDict
+rm -r refineMeshDict
+
+cp -a topoSetDict1 topoSetDict
+cp -a refineMeshDict0 refineMeshDict
+cd ..
+topoSet
+refineMesh -overwrite
+
+cd system
+rm -r refineMeshDict
+cp -a refineMeshDict1 refineMeshDict
+cd ..
+topoSet
+refineMesh -overwrite
+
+cd system
+rm -r refineMeshDict
+cp -a refineMeshDict2 refineMeshDict
+cd ..
+topoSet
+refineMesh -overwrite
+
+# second refinement level
+cd system
+rm -r topoSetDict
+rm -r refineMeshDict
+
+cp -a topoSetDict2 topoSetDict
+cp -a refineMeshDict0 refineMeshDict
+cd ..
+topoSet
+refineMesh -overwrite
+
+cd system
+rm -r refineMeshDict
+cp -a refineMeshDict1 refineMeshDict
+cd ..
+topoSet
+refineMesh -overwrite
+
+cd system
+rm -r refineMeshDict
+cp -a refineMeshDict2 refineMeshDict
+cd ..
+topoSet
+refineMesh -overwrite
+
+#snappyHexMesh
+snappyHexMesh -overwrite

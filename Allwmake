@@ -1,0 +1,52 @@
+#!/bin/bash
+
+set -o nounset
+set -o errexit
+
+wclean all 
+
+DXFLOW=`pwd`
+
+cd $DXFLOW/src/WaterWaves
+wmake
+
+cd $DXFLOW/src/sixDoFRigidBodyMotion_ABM
+wmake
+
+cd $DXFLOW/src/OversetAdv
+wmake
+
+cd $DXFLOW/src/PistonWaveGeneration
+wmake
+
+cd $DXFLOW/src/MassSource
+wmake
+
+cd $DXFLOW/src/WaveDamping
+wmake
+
+cd $DXFLOW/src/WavePorosityMedia
+wmake
+
+cd $DXFLOW/solver/DXFlow
+wmake
+
+cd $DXFLOW/solver/DXIsoFlow
+wmake
+
+cd $DXFLOW/solver/DXOverIsoFlow
+wmake
+
+cd $DXFLOW/solver/compressibleDXIsoFlow
+./allwmake
+
+cd $DXFLOW/src/pimpleControl
+# backup 
+mv $WM_PROJECT_DIR/src/finiteVolume/cfdTools/general/solutionControl/pimpleControl/pimpleControl.C $WM_PROJECT_DIR/src/finiteVolume/cfdTools/general/solutionControl/pimpleControl/pimpleControl-backup.C
+# move 
+cp -a pimpleControl.C $WM_PROJECT_DIR/src/finiteVolume/cfdTools/general/solutionControl/pimpleControl/pimpleControl.C
+# make
+cd $WM_PROJECT_DIR/src/finiteVolume
+wmake
+
+

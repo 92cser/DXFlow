@@ -1,0 +1,39 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      inputDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+WWParameters
+{
+	WaveType        	noWave;
+	WaterDepth		0.0;
+}
+WaveDamping
+{
+	/*x+
+	{
+		ForcingStrength     10.0;
+		StartPosition	    7;
+		endPosition	   		10;
+	}
+	x-
+	{	// consistent with the direction of incident waves
+		// therefore the start point should be larger than the end point
+		ForcingStrength     10.0;
+		StartPosition	    3.0; 
+		endPosition	    	0.0;
+	}*/
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
